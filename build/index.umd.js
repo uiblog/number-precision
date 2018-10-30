@@ -123,7 +123,14 @@ function floor(num, ratio) {
     var base = Math.pow(10, ratio);
     return divide(Math.floor(times(num, base)), base);
 }
-var index = { strip: strip, plus: plus, minus: minus, times: times, divide: divide, round: round, floor: floor, digitLength: digitLength, float2Fixed: float2Fixed };
+/**
+ * 银行家舍入
+ * 四舍六入五考虑，五后非零就进一，五后为零看奇偶，五前为偶应舍去，五前为奇要进一
+ */
+function fixed(num, ratio) {
+    return parseFloat(num.toFixed(ratio));
+}
+var index = { strip: strip, plus: plus, minus: minus, times: times, divide: divide, round: round, fixed: fixed, floor: floor, digitLength: digitLength, float2Fixed: float2Fixed };
 
 exports.strip = strip;
 exports.plus = plus;
@@ -132,6 +139,7 @@ exports.times = times;
 exports.divide = divide;
 exports.round = round;
 exports.floor = floor;
+exports.fixed = fixed;
 exports.digitLength = digitLength;
 exports.float2Fixed = float2Fixed;
 exports['default'] = index;
