@@ -118,7 +118,7 @@ function floor(num: number, ratio: number): number {
  * 四舍六入五考虑，五后非零就进一，五后为零看奇偶，五前为偶应舍去，五前为奇要进一
  */
 function fixed(num: number, ratio: number): number {
-  return parseFloat(num.toFixed(ratio));
+  return +parseFloat(num).toFixed(ratio);
 }
 
 export { strip, plus, minus, times, divide, round, floor, fixed, digitLength, float2Fixed };
