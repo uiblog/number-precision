@@ -126,7 +126,7 @@ function floor(num, ratio) {
  * 四舍六入五考虑，五后非零就进一，五后为零看奇偶，五前为偶应舍去，五前为奇要进一
  */
 function fixed(num, ratio) {
-    return +(parseFloat(num.toString()).toFixed(ratio));
+    return +Number(num).toFixed(ratio);
 }
 var index = { strip: strip, plus: plus, minus: minus, times: times, divide: divide, round: round, fixed: fixed, floor: floor, digitLength: digitLength, float2Fixed: float2Fixed };
 
