@@ -1,11 +1,9 @@
-'use strict';
-
-Object.defineProperty(exports, '__esModule', { value: true });
-
+"use strict";
 /**
  * @file 解决浮动运算问题，避免小数点后产生多位数和计算精度损失。
  * 问题示例：2.3 + 2.4 = 4.699999999999999，1.0 - 0.9 = 0.09999999999999998
  */
+Object.defineProperty(exports, "__esModule", { value: true });
 /**
  * 把错误的数据转正
  * strip(0.09999999999999998)=0.1
@@ -14,6 +12,7 @@ function strip(num, precision) {
     if (precision === void 0) { precision = 12; }
     return +parseFloat(num.toPrecision(precision));
 }
+exports.strip = strip;
 /**
  * Return digits length of a number
  * @param {*number} num Input number
@@ -24,6 +23,7 @@ function digitLength(num) {
     var len = (eSplit[0].split('.')[1] || '').length - (+(eSplit[1] || 0));
     return len > 0 ? len : 0;
 }
+exports.digitLength = digitLength;
 /**
  * 把小数转成整数，支持科学计数法。如果是小数则放大成整数
  * @param {*number} num 输入数
@@ -35,6 +35,7 @@ function float2Fixed(num) {
     var dLen = digitLength(num);
     return dLen > 0 ? num * Math.pow(10, dLen) : num;
 }
+exports.float2Fixed = float2Fixed;
 /**
  * 检测数字是否越界，如果越界给出提示
  * @param {*number} num 输入数
@@ -62,6 +63,7 @@ function times(num1, num2) {
     checkBoundary(leftValue);
     return leftValue / Math.pow(10, baseNum);
 }
+exports.times = times;
 /**
  * 精确加法
  */
@@ -76,6 +78,7 @@ function plus(num1, num2) {
     var baseNum = Math.pow(10, Math.max(digitLength(num1), digitLength(num2)));
     return (times(num1, baseNum) + times(num2, baseNum)) / baseNum;
 }
+exports.plus = plus;
 /**
  * 精确减法
  */
@@ -90,6 +93,7 @@ function minus(num1, num2) {
     var baseNum = Math.pow(10, Math.max(digitLength(num1), digitLength(num2)));
     return (times(num1, baseNum) - times(num2, baseNum)) / baseNum;
 }
+exports.minus = minus;
 /**
  * 精确除法
  */
@@ -107,6 +111,7 @@ function divide(num1, num2) {
     checkBoundary(num2Changed);
     return times((num1Changed / num2Changed), Math.pow(10, digitLength(num2) - digitLength(num1)));
 }
+exports.divide = divide;
 /**
  * 四舍五入
  */
@@ -114,6 +119,7 @@ function round(num, ratio) {
     var base = Math.pow(10, ratio);
     return divide(Math.round(times(num, base)), base);
 }
+exports.round = round;
 /**
  * 向下取整
  */
@@ -121,23 +127,14 @@ function floor(num, ratio) {
     var base = Math.pow(10, ratio);
     return divide(Math.floor(times(num, base)), base);
 }
+exports.floor = floor;
 /**
  * 银行家舍入
  * 四舍六入五考虑，五后非零就进一，五后为零看奇偶，五前为偶应舍去，五前为奇要进一
  */
 function fixed(num, ratio) {
-    return parseFloat(num.toFixed(ratio));
+    return +parseFloat(num).toFixed(ratio);
 }
-var index = { strip: strip, plus: plus, minus: minus, times: times, divide: divide, round: round, fixed: fixed, floor: floor, digitLength: digitLength, float2Fixed: float2Fixed };
-
-exports.strip = strip;
-exports.plus = plus;
-exports.minus = minus;
-exports.times = times;
-exports.divide = divide;
-exports.round = round;
-exports.floor = floor;
 exports.fixed = fixed;
-exports.digitLength = digitLength;
-exports.float2Fixed = float2Fixed;
-exports['default'] = index;
+exports.default = { strip: strip, plus: plus, minus: minus, times: times, divide: divide, round: round, fixed: fixed, floor: floor, digitLength: digitLength, float2Fixed: float2Fixed };
+//# sourceMappingURL=index.js.map
