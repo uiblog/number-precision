@@ -113,7 +113,14 @@ function round(num, ratio) {
     var base = Math.pow(10, ratio);
     return divide(Math.round(times(num, base)), base);
 }
-var index = { strip: strip, plus: plus, minus: minus, times: times, divide: divide, round: round, digitLength: digitLength, float2Fixed: float2Fixed };
+/**
+ * 向下取整
+ */
+function floor(num, ratio) {
+    var base = Math.pow(10, ratio);
+    return divide(Math.floor(times(num, base)), base);
+}
+var index = { strip: strip, plus: plus, minus: minus, times: times, divide: divide, round: round, floor: floor, digitLength: digitLength, float2Fixed: float2Fixed };
 
 exports.strip = strip;
 exports.plus = plus;
@@ -121,6 +128,7 @@ exports.minus = minus;
 exports.times = times;
 exports.divide = divide;
 exports.round = round;
+exports.floor = floor;
 exports.digitLength = digitLength;
 exports.float2Fixed = float2Fixed;
 exports['default'] = index;

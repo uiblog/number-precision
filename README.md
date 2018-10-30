@@ -25,6 +25,7 @@ NP.minus(num1, num2, num3, ...)  // subtraction, num1 - num2 - num3
 NP.times(num1, num2, num3, ...)  // multiplication, num1 * num2 * num3
 NP.divide(num1, num2, num3, ...) // division, num1 / num2 / num3
 NP.round(num, ratio)  // round a number based on ratio
+NP.floor(num, ratio)  // floor a number based on ratio
 ```
 
 ### Usage

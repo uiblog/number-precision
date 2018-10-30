@@ -105,5 +105,13 @@ function round(num: number, ratio: number): number {
   return divide(Math.round(times(num, base)), base);
 }
 
-export { strip, plus, minus, times, divide, round, digitLength, float2Fixed };
-export default { strip, plus, minus, times, divide, round, digitLength, float2Fixed };
+/**
+ * 向下取整
+ */
+function floor(num: number, ratio: number): number {
+  const base = Math.pow(10, ratio);
+  return divide(Math.floor(times(num, base)), base);
+}
+
+export { strip, plus, minus, times, divide, round, floor, digitLength, float2Fixed };
+export default { strip, plus, minus, times, divide, round, floor, digitLength, float2Fixed };
